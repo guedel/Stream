@@ -24,7 +24,7 @@
    * THE SOFTWARE.
    */
 
-  namespace guedel\Stream;
+  namespace Guedel\Stream;
 
   /**
    * Description of FileException
