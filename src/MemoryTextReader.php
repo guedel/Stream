@@ -9,7 +9,7 @@
    *
    */
 
-  namespace guedel\Stream;
+  namespace Guedel\Stream;
 
   /**
    * Description of MemoryTextReader

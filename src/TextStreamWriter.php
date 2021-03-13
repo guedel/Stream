@@ -9,7 +9,7 @@
    *
    */
 
-  namespace guedel\Stream;
+  namespace Guedel\Stream;
 
   /**
    * Base class to write text
