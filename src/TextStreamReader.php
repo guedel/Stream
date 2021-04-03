@@ -3,7 +3,7 @@
   /*
    * Copyright (C) 2018 Proximit
    *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>.
+   * @author Guedel <guedel87@live.fr>.
    * @since 08/10/2018.
    *
    *
@@ -14,7 +14,7 @@
   /**
    * base class for read text
    *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+   * @author Guedel <guedel87@live.fr>
    */
   abstract class TextStreamReader
   {
