@@ -18,31 +18,28 @@ namespace Guedel\Stream;
  */
 class ConsoleWriter extends TextStreamWriter
 {
-    public function nl(): void
+    public function nl(): TextStreamWriter
     {
         echo PHP_EOL;
+        return $this;
     }
 
-    public function out($msg): void
+    public function out($msg): TextStreamWriter
     {
         if (is_array($msg)) {
             foreach ($msg as $m) {
                 echo $m;
             }
-        } else {
-            echo $m;
+            return $this;
         }
+        echo $m;
+        return $this;
     }
 
-    public function outln($msg): void
+    public function outln($msg): TextStreamWriter
     {
-        if (is_array($msg)) {
-            foreach ($msg as $m) {
-                echo $m;
-            }
-        } else {
-            echo $m;
-        }
-        $this->nl();
+        return $this
+            ->out($msg)
+            ->nl();
     }
 }

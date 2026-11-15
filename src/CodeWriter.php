@@ -101,9 +101,9 @@ class CodeWriter extends TextStreamWriter
             foreach ($msg as $m) {
                 $this->current .= $m;
             }
-        } else {
-            $this->current .= $msg;
+            return $this;
         }
+        $this->current .= $msg;
         return $this;
     }
 

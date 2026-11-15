@@ -28,9 +28,9 @@ class FileTextReader extends TextStreamReader
             $this->filesize = 0;
             $this->filename = null;
             $this->file =  null;
-        } else {
-            $this->open($filename);
+            return;
         }
+        $this->open($filename);
     }
 
     public function close()
