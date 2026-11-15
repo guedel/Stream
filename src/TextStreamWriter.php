@@ -1,26 +1,26 @@
 <?php
 
-  /*
-   * Copyright (C) 2018 Proximit
-   *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>.
-   * @since 08/10/2018.
-   *
-   *
-   */
+/*
+ * This file is part of AbstractLanguage library.
+ *
+ * (c) Guedel <guedel87@live.fr>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-  namespace Guedel\Stream;
+namespace Guedel\Stream;
 
-  /**
-   * Base class to write text
-   *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
-   */
-  abstract class TextStreamWriter
-  {
-    public abstract function nl() : TextStreamWriter;
+/**
+ * Base class to write text
+ *
+ * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ */
+abstract class TextStreamWriter
+{
+    abstract public function nl(): TextStreamWriter;
 
-    public abstract function out($msg): TextStreamWriter;
+    abstract public function out($msg): TextStreamWriter;
 
-    public abstract function outln($msg) : TextStreamWriter;
-  }
+    abstract public function outln($msg): TextStreamWriter;
+}

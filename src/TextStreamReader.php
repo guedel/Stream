@@ -1,40 +1,40 @@
 <?php
 
-  /*
-   * Copyright (C) 2018 Proximit
-   *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>.
-   * @since 08/10/2018.
-   *
-   *
-   */
+/*
+ * This file is part of AbstractLanguage library.
+ *
+ * (c) Guedel <guedel87@live.fr>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-  namespace Guedel\Stream;
+namespace Guedel\Stream;
 
-  /**
-   * base class for read text
-   *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
-   */
-  abstract class TextStreamReader
-  {
+/**
+ * base class for read text
+ *
+ * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ */
+abstract class TextStreamReader
+{
     /**
      * Read until new line
      */
-    public abstract function readline() : string;
+    abstract public function readline(): string;
 
     /**
      * read $length chars
      */
-    public abstract function read(int $length): string;
+    abstract public function read(int $length): string;
 
     /**
      * Goto begin of stream
      */
-    public abstract function rewind() : void;
+    abstract public function rewind(): void;
 
     /**
      * End of stream ?
      */
-    public abstract function eos() : bool;
-  }
+    abstract public function eos(): bool;
+}
