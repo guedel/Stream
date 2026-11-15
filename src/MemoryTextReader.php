@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of AbstractLanguage library.
+ * This file is part of Stream library.
  *
  * (c) Guedel <guedel87@live.fr>
  *
