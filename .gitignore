@@ -1,0 +1,9 @@
+/vendor
+/nbproject/private/
+/.phpunit.cache
+/nbproject
+.phpunit.result.cache
+/.vscode
+/.php-cs-fixer.cache
+/.deptrac.cache
+/var

@@ -1,49 +1,45 @@
 <?php
 
-  /*
-   * Copyright (C) 2018 Proximit
-   *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>.
-   * @since 08/10/2018.
-   *
-   *
-   */
+/*
+ * This file is part of AbstractLanguage library.
+ *
+ * (c) Guedel <guedel87@live.fr>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-  namespace Guedel\Stream;
+namespace Guedel\Stream;
 
-  /**
-   * Console output
-   *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
-   */
-  class ConsoleWriter extends TextStreamWriter
-  {
-    public function nl(): void
+/**
+ * Console output
+ *
+ * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ */
+class ConsoleWriter extends TextStreamWriter
+{
+    public function nl(): TextStreamWriter
     {
-     echo PHP_EOL;
+        echo PHP_EOL;
+        return $this;
     }
 
-    public function out($msg): void
+    public function out($msg): TextStreamWriter
     {
-      if (is_array($msg)) {
-        foreach ($msg as $m) {
-          echo $m;
+        if (is_array($msg)) {
+            foreach ($msg as $m) {
+                echo $m;
+            }
+            return $this;
         }
-      } else {
         echo $m;
-      }
+        return $this;
     }
 
-    public function outln($msg): void
+    public function outln($msg): TextStreamWriter
     {
-      if (is_array($msg)) {
-        foreach ($msg as $m) {
-          echo $m;
-        }
-      } else {
-        echo $m;
-      }
-      $this->nl();
+        return $this
+            ->out($msg)
+            ->nl();
     }
-
-  }
+}
