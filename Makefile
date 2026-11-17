@@ -19,6 +19,7 @@ clean:
 fix-style:
 	@echo "Correction du style"
 	$(PHPQA) phpcbf
+	$(PHPQA) php-cs-fixer fix
 
 shellqa:
 	$(PHPQA) sh
@@ -30,6 +31,7 @@ style:
 	@echo "Vérification du style"
 	@mkdir -p var/tmp-phpqa
 	$(PHPQA) phpcs
+	$(PHPQA) php-cs-fixer check
 
 phpmd:
 	$(PHPQA) phpmd analyze --ruleset=cleancode --ignore-errors-on-exit --reportfile-html var/phpmd.html src
