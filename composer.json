@@ -1,7 +1,7 @@
 {
   "name": "guedel/stream",
   "description": "Library of stream classes",
-  "version": "0.1",
+  "version": "0.2",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -15,9 +15,8 @@
 	},
 	"autoload-dev": {
     "psr-4": {
-      "Guedel\\Tests\\Unit\\AL\\": "tests/unit/",
-      "Guedel\\Tests\\Functional\\AL\\": "tests/functional/",
-      "Guedel\\Tests\\Mock\\AL\\": "tests/mock/"
+      "Guedel\\Stream\\Tests\\Unit\\": "tests/unit/",
+      "Guedel\\Stream\\Tests\\Mock\\": "tests/mock/"
     }
   },
   "require": {
