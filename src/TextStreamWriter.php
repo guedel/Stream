@@ -14,7 +14,7 @@ namespace Guedel\Stream;
 /**
  * Base class to write text
  *
- * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ * @author Guedel <guedel87@live.fr>
  */
 abstract class TextStreamWriter
 {
