@@ -1,89 +1,82 @@
 <?php
 
-  /*
-   * Copyright (C) 2018 Proximit
-   *
-   * @author Guedel <guedel87@live.fr>.
-   * @since 08/10/2018.
-   *
-   *
-   */
+/*
+ * This file is part of Stream library.
+ *
+ * (c) Guedel <guedel87@live.fr>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-  namespace Guedel\Stream;
+namespace Guedel\Stream;
 
-  /**
-   * Description of CodeWriter
-   *
-   * @author Guedel <guedel87@live.fr>
-   */
-  class CodeWriter extends TextStreamWriter
-  {
-    /**
-     *
-     * @var int Level of indentation
-     */
-    private $indent = 0;
-
-    /**
-     *
-     * @var string
-     */
-    private $spacer = '\t';
+/**
+ * Description of CodeWriter
+ *
+ * @author Guedel <guedel87@live.fr>
+ */
+class CodeWriter extends TextStreamWriter
+{
     /**
      *
      * @var string Buffer
      */
-    private $current = '';
+    private string $current = '';
 
     /**
      *
      * @var array Stored lines of text
      */
-    private $lines = array();
+    private array $lines = [];
 
-    public function __construct(string $spacer = "\t", int $initialIndent  = 0)
-    {
-      $this->indent = $initialIndent;
-      $this->spacer = $spacer;
-      $this->current = '';
-      $this->lines = array();
+    /**
+     *
+     * @param int $indent Level of indentation
+     */
+    public function __construct(
+        private readonly string $spacer = "\t",
+        private int $indent = 0
+    ) {
+        $this->current = '';
+        $this->lines = [];
     }
 
-    public function indent() : self
+    public function indent(): self
     {
-      $this->indent++;
-      return $this;
+        $this->indent++;
+        return $this;
     }
 
-    public function unindent() : self
+    public function unindent(): self
     {
-      if ($this->indent > 0) {
-        $this->indent--;
-      }
-      return $this;
+        if ($this->indent > 0) {
+            $this->indent--;
+        }
+        return $this;
     }
 
-    public function render() : string
+    public function render(): string
     {
-      if (0 < strlen($this->current)) {
-        $this->nl();
-      }
-      $ret = '';
-      foreach($this->lines as $line) {
-        $ret .= $line . PHP_EOL;
-      }
-      return $ret;
+        if (0 < strlen($this->current)) {
+            $this->nl();
+        }
+        $ret = '';
+        foreach ($this->lines as $line) {
+            $ret .= $line . PHP_EOL;
+        }
+        return $ret;
     }
 
-    public function merge(CodeWriter $writer) : self
+    public function merge(CodeWriter $writer): self
     {
-      if (0 < strlen($this->current)) {
-        $this->nl();
-      }
-      foreach($writer->lines as $line) {
-        $this->lines[] = $line;
-      }
-      return $this;
+        if (0 < strlen($this->current)) {
+            $this->nl();
+        }
+        foreach ($writer->lines as $line) {
+            $this->lines[] = $line;
+        }
+        return $this;
     }
 
     /**
@@ -91,27 +84,27 @@
      */
     public function nl(): TextStreamWriter
     {
-      $line = str_repeat($this->spacer, $this->indent) . $this->current;
-      $this->lines[] = $line;
-      $this->current = '';
-      return $this;
+        $line = str_repeat($this->spacer, $this->indent) . $this->current;
+        $this->lines[] = $line;
+        $this->current = '';
+        return $this;
     }
 
     /**
      *  simple output witout new line
      *
-     * @param array|string msg
+     * @param array|string $msg
      */
     public function out($msg): TextStreamWriter
     {
-      if (is_array($msg)) {
-        foreach($msg as $m) {
-          $this->current .= $m;
+        if (is_array($msg)) {
+            foreach ($msg as $m) {
+                $this->current .= $m;
+            }
+            return $this;
         }
-      } else {
         $this->current .= $msg;
-      }
-      return $this;
+        return $this;
     }
 
     /**
@@ -121,8 +114,8 @@
      */
     public function outln($msg): TextStreamWriter
     {
-      $this->out($msg);
-      $this->nl();
-      return $this;
+        $this->out($msg);
+        $this->nl();
+        return $this;
     }
-  }
+}
