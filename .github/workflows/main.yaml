@@ -1,0 +1,38 @@
+name: Analayse de code statique
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the develop branch
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop, release ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  static-code-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: PHPCS
+        uses: docker://jakzal/phpqa:php8.3-alpine
+        with:
+          args: phpcs
+      - name: PHP-CS-Fixer
+        uses: docker://jakzal/phpqa:php8.3-alpine
+        with:
+          args: php-cs-fixer check
+        #    args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
+      - name: Rector
+        uses: docker://jakzal/phpqa:php8.3-alpine
+        with:
+          args: rector --dry-run
+      - name: PHPStan
+        uses: docker://jakzal/phpqa:php8.3-alpine
+        with:
+          args: phpstan analyze src/ -l 3
+      - name: PHPMD
+        uses: docker://jakzal/phpqa:php8.3-alpine
+        with:
+          args: phpmd analyze --ruleset=cleancode src
