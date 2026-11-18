@@ -1,65 +1,85 @@
 <?php
 
-  /*
-   * Copyright (C) 2018 Proximit
-   *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>.
-   * @since 08/10/2018.
-   *
-   *
-   */
+/*
+ * This file is part of Stream library.
+ *
+ * (c) Guedel <guedel87@live.fr>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-  namespace Guedel\Stream;
+namespace Guedel\Stream;
 
-  /**
-   * Description of MemoryTextReader
-   *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
-   */
-  class MemoryTextReader extends TextStreamReader
-  {
-    private $text = '';
-    private $position = 0;
-    private $length;
+/**
+ * Description of MemoryTextReader
+ *
+ * @author Guedel <guedel87@live.fr>
+ */
+class MemoryTextReader extends TextStreamReader
+{
+    private int $position = 0;
+    private readonly int $length;
 
-    public function __construct(string $text)
+    private const string CR = "\r";
+    private const string LF = "\n";
+    private const string CRLF = "\r\n";
+
+    public function __construct(private readonly string $text)
     {
-      $this->text = $text;
-      $this->position = 0;
-      $this->length = strlen($text);
+        $this->position = 0;
+        $this->length = strlen($this->text);
     }
+
 
     public function eos(): bool
     {
-      return $this->position >= $this->length;
+        return $this->position > $this->length;
     }
 
     public function read(int $length): string
     {
-      $str = substr($this->text, $this->position, $length);
-      $this->position += strlen($str);
-      return $str;
+        if ($this->eos()) {
+            return '';
+        }
+        $str = substr($this->text, $this->position, $length);
+        $this->position += $length;
+        return $str;
     }
 
     public function readline(): string
     {
-      for($pos = $this->position; $pos < $this->length; ++$pos) {
-        $ch = $this->text[$pos];
-        if ($ch === "\r" || $ch === "\n") {
-          break;
+        if ($this->eos()) {
+            return '';
         }
-      }
-      $ret = substr($this->text, $this->position, $pos - $this->position);
-      while (($ch === "\r" || $ch === "\n") && $pos < $this->length) {
-        $ch = $this->text[$pos];
-        $pos++;
-      }
-      $this->position = $pos;
-      return $ret;
+        $posCr = strpos($this->text, self::CR, $this->position);
+        $posLf = strpos($this->text, self::LF, $this->position);
+        $posCrLf = strpos($this->text, self::CRLF, $this->position);
+        $part = '';
+
+        // exclude bad responses
+        $positions = array_filter([$posCr, $posCrLf, $posLf], fn ($v) => $v !== false);
+        if (! empty($positions)) {
+            $pos = min($positions);
+            if ($pos === $posCrLf) {
+                $part = substr($this->text, $this->position, $pos - $this->position);
+                $this->position = $pos + 2;
+                return $part;
+            }
+            $part = substr($this->text, $this->position, $pos - $this->position);
+            $this->position = $pos + 1;
+            return $part;
+        }
+        $part = substr($this->text, $this->position);
+        $this->position = $this->length + 1;
+        return $part;
     }
 
+    /**
+     * Restart to the begin of text
+     */
     public function rewind(): void
     {
-      $this->position = 0;
+        $this->position = 0;
     }
-  }
+}

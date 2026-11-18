@@ -21,3 +21,4 @@ And you can now add with "composer require guedel/stream"
 # Changelog
 
 - 0.1 First release
+- 0.2 Added unit tests and upgrade to PHP 8.3
