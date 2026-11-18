@@ -1,13 +1,13 @@
 <?php
 
-  /*
-   * Copyright (C) 2018 Proximit
-   *
-   * @author Guedel <guedel87@live.fr>.
-   * @since 08/10/2018.
-   *
-   *
-   */
+/*
+ * This file is part of Stream library.
+ *
+ * (c) Guedel <guedel87@live.fr>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Guedel\Stream;
 
