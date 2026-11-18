@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of AbstractLanguage library.
+ * This file is part of Stream library.
  *
  * (c) Guedel <guedel87@live.fr>
  *
@@ -16,7 +16,7 @@ use Exception;
 /**
    * Description of FileException
    *
-   * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+   * @author Guedel <guedel87@live.fr>
    */
 class FileException extends Exception
 {

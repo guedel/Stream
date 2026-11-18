@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of AbstractLanguage library.
+ * This file is part of Stream library.
  *
  * (c) Guedel <guedel87@live.fr>
  *
@@ -25,6 +25,6 @@ return RectorConfig::configure()
     ->withDeadCodeLevel(3)
     ->withCodeQualityLevel(3)
     ->withTreatClassesAsFinal()
-    # ->withAttributesSets()
+    ->withAttributesSets()
     ->withImportNames()
 ;

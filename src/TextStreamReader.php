@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of AbstractLanguage library.
+ * This file is part of Stream library.
  *
  * (c) Guedel <guedel87@live.fr>
  *
@@ -14,12 +14,12 @@ namespace Guedel\Stream;
 /**
  * base class for read text
  *
- * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ * @author Guedel <guedel87@live.fr>
  */
 abstract class TextStreamReader
 {
     /**
-     * Read until new line
+     * Read until new line or end of stream
      */
     abstract public function readline(): string;
 

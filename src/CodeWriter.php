@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of AbstractLanguage library.
+ * This file is part of Stream library.
  *
  * (c) Guedel <guedel87@live.fr>
  *
@@ -14,7 +14,7 @@ namespace Guedel\Stream;
 /**
  * Description of CodeWriter
  *
- * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ * @author Guedel <guedel87@live.fr>
  */
 class CodeWriter extends TextStreamWriter
 {
@@ -22,17 +22,17 @@ class CodeWriter extends TextStreamWriter
      *
      * @var string Buffer
      */
-    private $current = '';
+    private string $current = '';
 
     /**
      *
      * @var array Stored lines of text
      */
-    private $lines = [];
+    private array $lines = [];
 
     /**
      *
-     * @var int $indent Level of indentation
+     * @param int $indent Level of indentation
      */
     public function __construct(
         private readonly string $spacer = "\t",
@@ -93,7 +93,7 @@ class CodeWriter extends TextStreamWriter
     /**
      *  simple output witout new line
      *
-     * @param array|string msg
+     * @param array|string $msg
      */
     public function out($msg): TextStreamWriter
     {

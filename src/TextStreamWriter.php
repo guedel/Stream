@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of AbstractLanguage library.
+ * This file is part of Stream library.
  *
  * (c) Guedel <guedel87@live.fr>
  *
@@ -14,7 +14,7 @@ namespace Guedel\Stream;
 /**
  * Base class to write text
  *
- * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ * @author Guedel <guedel87@live.fr>
  */
 abstract class TextStreamWriter
 {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of AbstractLanguage library.
+ * This file is part of Stream library.
  *
  * (c) Guedel <guedel87@live.fr>
  *
@@ -14,7 +14,7 @@ namespace Guedel\Stream;
 /**
  * Description of FileTextReader
  *
- * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ * @author Guedel <guedel87@live.fr>
  */
 class FileTextReader extends TextStreamReader
 {
@@ -33,7 +33,7 @@ class FileTextReader extends TextStreamReader
         $this->open($filename);
     }
 
-    public function close()
+    public function close(): void
     {
         if ($this->file !== null) {
             fclose($this->file);
@@ -50,6 +50,7 @@ class FileTextReader extends TextStreamReader
         }
         $this->filesize = filesize($filename);
         $this->file = fopen($this->filename = $filename, "r");
+        return $this->file !== false;
     }
 
     public function eos(): bool

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of AbstractLanguage library.
+ * This file is part of Stream library.
  *
  * (c) Guedel <guedel87@live.fr>
  *
@@ -14,7 +14,7 @@ namespace Guedel\Stream;
 /**
  * Console output
  *
- * @author Guillaume de Lestanville <guillaume.delestanville@proximit.fr>
+ * @author Guedel <guedel87@live.fr>
  */
 class ConsoleWriter extends TextStreamWriter
 {
@@ -32,7 +32,7 @@ class ConsoleWriter extends TextStreamWriter
             }
             return $this;
         }
-        echo $m;
+        echo $msg;
         return $this;
     }
 
